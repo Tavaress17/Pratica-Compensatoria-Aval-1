@@ -1,0 +1,11 @@
+type Classroom {
+    id: ID!
+    name: String!
+    capacity: String!
+    observation: String!
+}
+
+type Query {
+    classrooms: [Classroom!]!
+    classroom(id: ID!): Classroom
+}
