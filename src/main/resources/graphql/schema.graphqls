@@ -9,3 +9,7 @@ type Query {
     classrooms: [Classroom!]!
     classroom(id: ID!): Classroom
 }
+
+type Mutation {
+    createClassroom(name: String!, capacity: String!, observation: String!): Classroom!
+}
