@@ -1,7 +1,9 @@
 type Classroom {
     id: ID!
-    name: String!
-    capacity: String!
+    description: String!
+    block: String!
+    floor: String!
+    capacity: Int!
     observation: String!
 }
 
@@ -11,5 +13,5 @@ type Query {
 }
 
 type Mutation {
-    createClassroom(name: String!, capacity: String!, observation: String!): Classroom!
+    createClassroom(description: String!, block: String!, floor: String!, capacity: Int!, observation: String!): Classroom!
 }

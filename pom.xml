@@ -12,7 +12,7 @@
 	<artifactId>classroom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>classroom</name>
-	<description>Demo project for Spring Boot</description>
+	<description>GraphQL Classroom API</description>
 	<url/>
 	<licenses>
 		<license/>

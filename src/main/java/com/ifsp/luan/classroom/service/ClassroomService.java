@@ -3,7 +3,6 @@ package com.ifsp.luan.classroom.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ifsp.luan.classroom.model.Classroom;
@@ -12,8 +11,11 @@ import com.ifsp.luan.classroom.repository.ClassroomRepository;
 
 @Service
 public class ClassroomService {
-    @Autowired
-    private ClassroomRepository classroomRepository;
+    private final ClassroomRepository classroomRepository;
+
+    public ClassroomService(ClassroomRepository classroomRepository) {
+        this.classroomRepository = classroomRepository;
+    }
 
     public List<Classroom> getAllClassrooms() {
         return classroomRepository.findAll();
