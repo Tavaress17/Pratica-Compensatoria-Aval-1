@@ -8,24 +8,25 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import com.ifsp.luan.classroom.model.Classroom;
-import com.ifsp.luan.classroom.repository.ClassroomRepository;
+import com.ifsp.luan.classroom.service.ClassroomService;
 
 @Controller
 public class ClassroomGraphQLController {
-    private final ClassroomRepository classroomRepository;
 
-    public ClassroomGraphQLController(ClassroomRepository classroomRepository) {
-        this.classroomRepository = classroomRepository;
+    private final ClassroomService classroomService;
+
+    public ClassroomGraphQLController(ClassroomService classroomService) {
+        this.classroomService = classroomService;
     }
 
     @QueryMapping
     public List<Classroom> classrooms() {
-        return classroomRepository.findAll();
+        return classroomService.getAllClassrooms();
     }
 
     @QueryMapping
     public Classroom classroom(@Argument String id) {
-        return classroomRepository.findById(id).orElse(null);
+        return classroomService.getClassroomById(id);
     }
 
     @MutationMapping
@@ -36,7 +37,23 @@ public class ClassroomGraphQLController {
         @Argument Integer capacity,
         @Argument String observation
     ) {
-        Classroom classroom = new Classroom(null, description, block, floor, capacity, observation);
-        return classroomRepository.save(classroom);
+        return classroomService.createClassroom(description, block, floor, capacity, observation);
+    }
+
+    @MutationMapping
+    public Classroom updateClassroom(
+        @Argument String id,
+        @Argument String description,
+        @Argument String block,
+        @Argument String floor,
+        @Argument Integer capacity,
+        @Argument String observation
+    ) {
+        return classroomService.updateClassroom(id, description, block, floor, capacity, observation);
+    }
+
+    @MutationMapping
+    public Boolean deleteClassroom(@Argument String id) {
+        return classroomService.deleteClassroom(id);
     }
 }
