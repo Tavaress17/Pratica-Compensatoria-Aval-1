@@ -12,7 +12,11 @@ import com.ifsp.luan.classroom.repository.ClassroomRepository;
 
 @Controller
 public class ClassroomGraphQLController {
-    private ClassroomRepository classroomRepository;
+    private final ClassroomRepository classroomRepository;
+
+    public ClassroomGraphQLController(ClassroomRepository classroomRepository) {
+        this.classroomRepository = classroomRepository;
+    }
 
     @QueryMapping
     public List<Classroom> classrooms() {
